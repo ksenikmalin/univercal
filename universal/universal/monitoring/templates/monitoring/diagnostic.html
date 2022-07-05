@@ -1,0 +1,105 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<div class="row opensans-font justify-content-md-center mt-5">
+    <div class="col-lg-2 col-sm-12">
+        <div class="filter-form">
+            <form action=""> <!-- Когда дело дойдёт до отправки формы фильтрации -->
+                <b class="filter-title">Фильтр</b>
+                <div class="filter-box">
+                    <strong>Диапозон времени:</strong>
+                    <div class="filter-fixed-height">
+                        <div class="filter-value">
+                            <input class="form-check-input" name="hourRadio" id="1hour" type="radio">
+                            <label class="form-check-label" for="1hour">За 1 час</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="hourRadio" type="radio" id="12hours">
+                            <label class="form-check-label" for="12hours">За 12 часов</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="hourRadio" type="radio" id="12hours">
+                            <label class="form-check-label" for="12hours">За сутки</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-box">
+                    <strong>Выберите помещение:</strong>
+                    <div class="filter-fixed-height">
+                        {% for r in rooms %}
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" type="checkbox" id="ceh1">
+                            <label class="form-check-label" for="ceh1">{{ r.name }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="filter-box">
+                    <strong>Выберите систему:</strong>
+                    <div class="filter-fixed-height">
+                        {% for s in systems %}
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" type="checkbox" id="microclimat">
+                            <label class="form-check-label" for="microclimat">{{ s.name }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="reset">Сбросить</button>
+                <button class="primary">Начать диагностику</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="row mb-3">
+            <div class="d-flex align-items-center">
+                <div class="col-2 offset-8 p-0 text-sort-by">
+                    <p>
+                        Сортировать по:
+                    </p>
+                </div>
+                <div class="col-2">
+                    <select class="form-select" aria-label="Выбор сортировки">
+                        <option selected>Выберите значение</option>
+                        <option value="1">Устройство</option>
+                        <option value="2">Серия</option>
+                        <option value="3">Помещение</option>
+                        <option value="3">Значение</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered universal">
+            <thead>
+                <tr>
+                    <td>Устройства</td>
+                    <td>Серия</td>
+                    <td>Помещение</td>
+                    <td>Значение</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Датчик температуры</td>
+                    <td>255HG52</td>
+                    <td>Цех 1</td>
+                    <td>Не работает</td>
+                </tr>
+                <tr>
+                    <td>Датчик температуры</td>
+                    <td>255HG52</td>
+                    <td>Цех 1</td>
+                    <td>Не работает</td>
+                </tr>
+                <tr>
+                    <td>Датчик температуры</td>
+                    <td>255HG52</td>
+                    <td>Цех 1</td>
+                    <td>Не работает</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

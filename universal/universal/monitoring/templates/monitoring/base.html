@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type= "text/css" href="{% static 'monitoring/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link type= "text/css" href="{% static 'monitoring/css/styles.css' %}" rel="stylesheet"> 
+
+    <title>{{ title }} веб-приложения Универсал</title>
+</head>
+<body>
+    <main>
+    {% block mainmenu %}
+     <div class="d-flex flex-column flex-shrink-0 p-3 text-white m_background shadow-sm rounded" w-25>
+    <a href="{% url 'home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <img class="img-menu m-2" alt="">
+      <span class="fs-4">Меню</span>
+    </a>
+    <hr>
+    <ul id="navbar" class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="{% url 'home' %}" class="nav-link active" aria-current="page">
+            <img class="img-monitoring" alt="">
+            Мониторинг
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'diagnostic' %}" class="nav-link text-white">
+            <img class="img-diagnostic" alt="">
+            Диагностика
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'errors' %}" class="nav-link text-white">
+            <img class="img-errors" alt="">
+            Ошибки
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'customization' %}" class="nav-link text-white">
+            <img class="img-customization" alt="">
+            Настройка
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'help' %}" class="nav-link text-white">
+            <img class="img-help" alt="">
+            Помощь
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'reference' %}" class="nav-link text-white">
+            <img class="img-reference" alt="">
+            Справка
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'contract' %}" class="nav-link text-white">
+            <img class="img-contract" alt="">
+            Договор
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'profile' %}" class="nav-link text-white">
+            <img class="img-profile" alt="">
+            Мой профиль
+        </a>
+      </li>
+    </ul>
+  </div>
+    {% endblock mainmenu %}    
+      
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand" aria-label="Second navbar example">
+            <div class="container-fluid shadow-sm bg-body rounded">
+              <a class="navbar-brand text-dark text-decoration-none" href="">
+                <img class="img-universal m-2" alt="">
+                <span class="fs-6">Универсал <br> Веб-платформа для мониторинга и управления системой датчиков</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              {% if user.is_authenticated %}
+                <div class="d-flex justify-content-end pt-0 mb-2 align-middle">
+                  <button type="button" class="btn btn-light m-2 text-dark" ><a href="{% url 'profile' %}" class="nav-link text-dark">Пользователь: {{ user.get_username }}</a></button>
+                  <button type="button" class="btn btn-warning m-2"> <a href="{% url 'logout'%}?next={{request.path}}" class="nav-link text-dark">Выйти</a></button>
+                </div>   
+              {% else %}
+                <div class="d-flex justify-content-end pt-0 mb-2 align-middle">
+                  <button type="button" class="btn btn-warning m-2"><a href="{% url 'register' %}" class="nav-link text-dark">Регистрация</a></button>
+                  <button type="button" class="btn btn-warning m-2"> <a href="{% url 'login'%}?next={{request.path}}" class="nav-link text-dark">Войти</a></button>
+                </div>   
+              {% endif %} 
+            </div>
+        </nav>
+
+        <div class="d-flex justify-content-start ps-2 pt-2 pb-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    {% for h in history %}
+                        {% if h.active == True %}
+                            <li class="breadcrumb-item active">
+                                {{ h.name }}
+                            </li>
+                        {% else %}
+                            <li class="breadcrumb-item">
+                            <a href="#">{{ h.name }}</a>
+                            </li>
+                        {% endif %} 
+                            
+                    {% endfor %}
+                </ol>
+            </nav>
+        </div>
+
+        <div class="d-flex justify-content-center pt-0 mb-2">
+            <h5 class="p-0 m-0">{{ title }}</h5>
+        </div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <main>
+
+      <script>
+      </script>
+</body>
+</html>

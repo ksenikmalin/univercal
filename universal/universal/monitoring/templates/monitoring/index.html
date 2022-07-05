@@ -1,0 +1,22 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="row ms-2 pr-2" data-masonry='{"percentPosition": true }'>
+    {% for s in systems %}
+    <div class="col-sm-6 col-lg-4 mb-4 ">
+      <div class="card shadow-sm">
+        <a href="#">
+            <img src="{{ s.photo.url }}" class="card-img-center cover">
+            <div class="card-body">
+              <h5 class="card-title">{{ s.name }}</h5>
+              <p class="card-text">{{ s.description }}</p>
+            </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+  {% endblock content %}

@@ -1,0 +1,112 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+
+<div class="row opensans-font justify-content-md-center mt-5">
+    <div class="col-lg-2 col-sm-12">
+        <div class="filter-form">
+            <form action=""> <!-- Когда дело дойдёт до отправки формы фильтрации -->
+                <b class="filter-title">Фильтр</b>
+                <div class="filter-box">
+                    <strong>Диапозон времени:</strong>
+                    <div class="filter-fixed-height">
+                        <div class="filter-value">
+                            <input class="form-check-input" name="hourRadio" id="1hour" type="radio">
+                            <label class="form-check-label" for="1hour">За 1 час</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="hourRadio" type="radio" id="12hours">
+                            <label class="form-check-label" for="12hours">За 12 часов</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="hourRadio" type="radio" id="12hours">
+                            <label class="form-check-label" for="12hours">За сутки</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-box">
+                    <strong>Выберите помещение:</strong>
+                    <div class="filter-fixed-height">
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" type="checkbox" id="ceh1">
+                            <label class="form-check-label" for="ceh1">Бытовой отсек</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" id="ceh2" type="checkbox">
+                            <label class="form-check-label" for="ceh2">Входная</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" type="checkbox" id="ceh1">
+                            <label class="form-check-label" for="ceh1">Цех 1</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" id="ceh2" type="checkbox">
+                            <label class="form-check-label" for="ceh2">Цех 2</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-box">
+                    <strong>Выберите систему:</strong>
+                    <div class="filter-fixed-height">
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" type="checkbox" id="microclimat">
+                            <label class="form-check-label" for="microclimat">Микроклимат</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" id="manufacturing" type="checkbox">
+                            <label class="form-check-label" for="manufacturing">Пожарная безопасность</label>
+                        </div>
+                        <div class="filter-value">
+                            <input class="form-check-input" name="flexRadioDefault" id="manufacturing" type="checkbox">
+                            <label class="form-check-label" for="manufacturing">Производственный процесс</label>
+                        </div>
+                    </div>
+                </div>
+                <button class="reset">Сбросить</button>
+                <button class="primary">Начать диагностику</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="row mb-3">
+            <div class="d-flex align-items-center">
+                <div class="col-2 offset-8 p-0 text-sort-by">
+                    <p>
+                        Сортировать по:
+                    </p>
+                </div>
+                <div class="col-2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Выберите значение</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+          <div class="row my-3">
+              <div class="col">
+                  <h6 style="text-align: center;">Датчик температуры</h6>
+              </div>
+          </div>
+          <div class="row my-2">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-body">
+                          <canvas id="chLine" height="100"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+        
+    </div>
+</div>
+
+{% endblock content %}

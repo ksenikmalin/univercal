@@ -1,0 +1,38 @@
+{% extends 'monitoring/base.html' %}
+
+{% block content %}
+<br>
+<br> 
+{% if form.errors %}
+  <p>Такого пользователя с паролем не существует! Попробуйте еще раз!</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Ваш аккаунт не может получить доступ до этой страницы. Свяжитесь с администратором для получения доступа к странице.</p>
+  {% else %}
+  <div class="d-flex justify-content-center pt-0 mb-2">
+    <h5 class="p-0 m-0">Авторизация</h5>
+</div> 
+  {% endif %}
+{% endif %}
+
+<div class="form-signin text-center d-flex justify-content-center">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="form-floating">
+        {{ form.username }}
+      <label for="id_username"></label>
+    </div>
+    <div class="form-floating">
+        {{ form.password }}
+      <label for="id_password"></label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" value="login">Войти</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  {% endblock content %}
